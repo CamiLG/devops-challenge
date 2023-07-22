@@ -10,3 +10,9 @@ Generé el docker-compose para configurar el servicio, indicando la imagen a uti
 Si bien partí de un flow que la herramienta sugirió, con la documentación pude llegar a obtener los pasos que necesitaba para que el flow se ejecute cuando se hagan cambios en el index.html, y para que buildee la imagen y la publique en DockerHub. 
 Luego modifiqué el index.html para probar la ejecución del flow. No funcionó a la primera xD sino que tuve que leer los logs de cada ejecución e identificar y corregir los distintos errores para poder llegar a una ejecución exitosa. 
 
+Las referencias utilizadas fueron: 
+https://docs.github.com/es/actions/using-workflows/events-that-trigger-workflows
+https://docs.github.com/es/actions/publishing-packages/publishing-docker-images
+https://docs.github.com/es/actions/security-guides/encrypted-secrets
+
+
