@@ -11,8 +11,16 @@ Si bien partí de un flow que la herramienta sugirió, con la documentación pud
 Luego modifiqué el index.html para probar la ejecución del flow. No funcionó a la primera xD sino que tuve que leer los logs de cada ejecución e identificar y corregir los distintos errores para poder llegar a una ejecución exitosa. 
 
 Las referencias utilizadas fueron: 
+Docker:
+https://docs.docker.com/engine/reference/commandline/build/
+https://docs.docker.com/get-started/publish-your-own-image/
+https://docs.docker.com/compose/gettingstarted/
+
+CI/CD:
 https://docs.github.com/es/actions/using-workflows/events-that-trigger-workflows
 https://docs.github.com/es/actions/publishing-packages/publishing-docker-images
 https://docs.github.com/es/actions/security-guides/encrypted-secrets
 
+Link al repo de la imagen creada:
+https://hub.docker.com/repository/docker/camilg/nginx-server/tags?page=1&ordering=last_updated
 
