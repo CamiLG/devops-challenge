@@ -34,21 +34,21 @@ Punto 2
 Despliegue Dockerizado
 ---
 Este punto involucra el despliegue dockerizado de una app con frontend en React y Backend en Django. 
-A grandez rasgos dividí el desafío en 3 partes:
-1. Iniciar las apps de forma local para verificar posibles errores, requerimientos de instalación adicionales que sean necesarios para considerar en las imágenes de los contenedores o cualquier detalle adicional. 
+A grandes rasgos dividí el desafío en 3 partes:
+1. Iniciar las apps de forma local para verificar posibles errores, requerimientos de instalación adicionales que sean necesarios considerar en las imágenes de los contenedores o cualquier detalle adicional. 
 2. Generar y publicar las imágenes tanto del frontend como del backend, que luego serán usadas para elaborar el docker-compose con todos los servicios. 
 3. Generar el yaml de docker-compose con el detalle de los servicios, configuraciones de componentes adicionales (por ejemplo la db postgres, usuarios y variables de entorno, etc)
 
-1.FRONT: A la hora de intentar levantar el frontend me encontré con varios errores que fui anotando para verificar mas tarde, pero en general no tuve mayor inconveniente. Utilicé un modelo de dockerfile en el cual la imagen se construye en partes, es decir, un multi-stage build; con un NodeJs, y un Nginx para almacenar los archivos luego del build del frontend. 
+1. FRONT: A la hora de intentar levantar el frontend me encontré con varios errores que fui anotando para verificar mas tarde, pero en general no tuve mayor inconveniente. Utilicé un modelo de dockerfile en el cual la imagen se construye en partes, es decir, un multi-stage build; con un NodeJs para buildear el frontend, y un Nginx para publicarlo. 
 
-1.BACK: Respecto del proyecto Django, a la hora de instalar los elementos del requirements.txt fui anotando todas aquellas herramientas o paquetes adicionales que eran necesarios para considerarlos en la creación de la imagen del contenedor. Tuve bastantes inconvenientes con la herramienta psycopg2 ya que en la instalación daba error de compilación, y tampoco pude utilizar el binario ya compilado psycopg2-binary en su lugar. Si bien en un principio sospeché que podría ser un problema de compatibilidad por estar trabajando en un linux virtualizado en ARM, luego probé la instalación en un Linux nativo con Intel y tuve el mismo error de compilación. Así que opté por probar otra versión de la herramienta y cambiar la especificación en el requirement.txt para pasar a buildear la imagen. 
+1. BACK: Respecto del proyecto Django, a la hora de instalar los elementos del requirements.txt fui anotando todas aquellas herramientas o paquetes adicionales que eran necesarios considerar en la creación de la imagen del contenedor. Tuve bastantes inconvenientes con el módulo psycopg2 ya que en la instalación daba error de compilación, y tampoco pude utilizar el binario ya compilado psycopg2-binary en su lugar. Si bien en un principio sospeché que podría ser un problema de compatibilidad por estar trabajando en un linux virtualizado en ARM, luego probé la instalación en un Linux nativo con Intel y tuve el mismo error de compilación. Así que probé otra versión de la herramienta y cambié la especificación en el requirement.txt para buildear la imagen. 
 
-2.BUILD: Construí las imagenes y las publiqué en DockerHub para poder usarlas en la elaboración del docker-compose. 
+2.BUILD: Construí las imágenes y las publiqué en DockerHub para poder usarlas en la elaboración del docker-compose. 
 
 3.DOCKER-COMPOSE: En el archivo docker-compose.yml definí y configuré todos los servicios incluyendo los volúmenes necesarios, puertos, variables de entorno y dependencias entre servicios. 
 
 Luego levanté el compose de servicios y verifiqué que funcionen y ejecuté para el backend los comandos de migrate y makemigrations. 
-Como puntos a mejorar, faltaría la configuración en el nginx para que actúe como reversal proxy para redirigir el tráfico. Además tuve un error nuevamente con el adapter del Postgres, que invoucraría una revisión de la versión del psycopg2 (el error indicaba un problema con el timezone configurado). 
+Como puntos a mejorar, faltaría la configuración en el nginx para que actúe como reverse proxy para redirigir el tráfico. Además tuve un error nuevamente con el adapter del Postgres, que involucraría una revisión de la versión del psycopg2 (el error indicaba un problema con el timezone configurado). 
 
 Estos últimos pasos serían necesarios para iniciar el proyecto de forma local, ya sea en un entorno nativo o virtualizado, la única consideración es que las imágenes que construí son para arquitecturas intel. 
 
