@@ -47,7 +47,7 @@ A grandez rasgos dividí el desafío en 3 partes:
 
 3.DOCKER-COMPOSE: En el archivo docker-compose.yml definí y configuré todos los servicios incluyendo los volúmenes necesarios, puertos, variables de entorno y dependencias entre servicios. 
 
-Luego levanté el compose de servicios y verifiqué que funcionen, luego ejecuté para el backend los comandos de migrate y makemigrations. 
+Luego levanté el compose de servicios y verifiqué que funcionen y ejecuté para el backend los comandos de migrate y makemigrations. 
 Como puntos a mejorar, faltaría la configuración en el nginx para que actúe como reversal proxy para redirigir el tráfico. Además tuve un error nuevamente con el adapter del Postgres, que invoucraría una revisión de la versión del psycopg2 (el error indicaba un problema con el timezone configurado). 
 
 Estos últimos pasos serían necesarios para iniciar el proyecto de forma local, ya sea en un entorno nativo o virtualizado, la única consideración es que las imágenes que construí son para arquitecturas intel. 
